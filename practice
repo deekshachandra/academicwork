@@ -1,0 +1,33 @@
+
+1. Create a table for jewelry pieces
+CREATE TABLE jewelry_collection (
+    piece_id INT PRIMARY KEY,
+    piece_name VARCHAR(100),
+    material VARCHAR(50),
+    collection_name VARCHAR(100),
+    price DECIMAL(10,2),
+    launch_date DATE
+);
+
+-- 2. Insert some iconic pieces
+INSERT INTO jewelry_collection 
+(piece_id, piece_name, material, collection_name, price, launch_date)
+VALUES
+(1, 'Cable Classic Bracelet', 'Sterling Silver', 'Cable', 395.00, '2026-01-15'),
+(2, 'Petite Pavé Necklace', 'Gold', 'Pavé', 850.00, '2026-02-10'),
+(3, 'Statement Signet Ring', 'Sterling Silver', 'Modern Edge', 475.00, '2026-03-01');
+
+-- 3. Find the high-value queens (over $500)
+SELECT piece_name, price
+FROM jewelry_collection
+WHERE price > 500
+ORDER BY price DESC;
+
+-- 4. Count how many silver pieces we adore
+SELECT material, COUNT(*) AS total_pieces
+FROM jewelry_collection
+GROUP BY material;
+
+-- 5. Calculate average sparkle investment
+SELECT AVG(price) AS average_price
+FROM jewelry_collection;
