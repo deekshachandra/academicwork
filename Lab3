@@ -1,0 +1,20 @@
+import pyodbc #requires pyodbc package
+
+db_file_path = "c:\\temp\\foo.accdb"
+
+#Define the so-called 'connect string.' It specifies both the driver to use and the location of the database.
+#In this case, we specify Microsoft's default ODBC driver, so we assume that we are running on a Windows machine.
+connect_string = "Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=" + db_file_path
+
+#Always use a try/except in database communications
+try:
+  #Make the connection using the connect_string
+  connection = pyodbc.connect(connect_string)
+  print("connected...")
+except Exception as err:
+  print("Error connecting...\n", str(err))
+  exit(1) #Since we are not connected, we exit with non-zero exit status
+
+#Close the connection
+connection.close()
+print("disconnected...")
